@@ -16,8 +16,8 @@ Route::get('/login', function () {
 Route::post('/login', [UsuarioController::class, 'login']);
 
 // 🟢 REGISTRO
-Route::get('/registro', function () {
-    return view('registro');
+Route::get('/registros', function () {
+    return view('registros');
 });
 
 Route::post('/registro', [UsuarioController::class, 'store']);
@@ -45,3 +45,14 @@ Route::get('/carrito', function () {
 Route::get('/equipo', function () {
     return view('equipo');
 });
+
+
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=farmacialaravelctes@gmail.com
+MAIL_PASSWORD=xnbvonqkwschkbjs
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=farmacialaravelctes@gmail.com
+MAIL_FROM_NAME="FarmaciaCtes"
