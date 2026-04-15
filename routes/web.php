@@ -42,10 +42,9 @@ Route::get('/carrito', function () {
 });
 
 // 📄 OTRAS VISTAS
-Route::get('/equipo', function () {
-    return view('equipo');
+Route::get('/acercaNosotros', function () {
+    return view('acercaNosotros');
 });
-
 
 
 MAIL_MAILER=smtp

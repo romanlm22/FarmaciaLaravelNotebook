@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
+@extends('layouts.app')
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('title', 'Registro')
 
-<body class="bg-light d-flex flex-column min-vh-100">
+@section('content')
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">Mi Sitio</a>
-        <div>
-            <a href="/contacto" class="btn btn-outline-light me-2">Contacto</a>
-            <a href="/equipo" class="btn btn-outline-light">Equipo</a>
-        </div>
-    </div>
-</nav>
-
-<!-- CONTENIDO -->
-<div class="container flex-grow-1 d-flex justify-content-center align-items-center">
+<div class="container d-flex justify-content-center align-items-center flex-grow-1">
 
     <div class="col-md-6 col-lg-5">
 
@@ -34,58 +16,30 @@
 
             <div class="card-body">
 
-                <!-- MENSAJE -->
                 @if(session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                 @endif
 
-                <!-- FORMULARIO -->
                 <form method="POST" action="/registro">
                     @csrf
 
-                    <!-- Nombre -->
-                    <div class="mb-3">
-                        <label class="form-label">Nombre completo</label>
-                        <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
-                    </div>
+                    <input type="text" name="nombre" class="form-control mb-3" placeholder="Nombre" required>
+                    <input type="email" name="email" class="form-control mb-3" placeholder="Email" required>
+                    <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
+                    <input type="password" name="password_confirmation" class="form-control mb-3" placeholder="Confirmar" required>
 
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label class="form-label">Correo electrónico</label>
-                        <input type="email" name="email" class="form-control" placeholder="ejemplo@email.com" required>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="mb-3">
-                        <label class="form-label">Contraseña</label>
-                        <input type="password" name="password" class="form-control" placeholder="********" required>
-                    </div>
-
-                    <!-- Confirmar -->
-                    <div class="mb-3">
-                        <label class="form-label">Confirmar contraseña</label>
-                        <input type="password" name="password_confirmation" class="form-control" placeholder="********" required>
-                    </div>
-
-                    <!-- Checkbox -->
-                    <div class="mb-3 form-check">
+                        <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" required>
                         <label class="form-check-label">Acepto los términos</label>
-                    </div>
-                    <div class="mb-3 form-check">
+                        </div>
+                        <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" required>
                         <label class="form-check-label">Recibir Promociones</label>
-                    </div>
+                        </div>
 
-                    <!-- Botón -->
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-success">
-                            Registrarse
-                        </button>
-                    </div>
-
+                    <button class="btn btn-success w-100">Registrarse</button>
                 </form>
 
             </div>
@@ -100,13 +54,4 @@
 
 </div>
 
-<!-- FOOTER -->
-<footer class="bg-dark text-white text-center mt-auto p-4">
-    <p>Síguenos en redes</p>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+@endsection

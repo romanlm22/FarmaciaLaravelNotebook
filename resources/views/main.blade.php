@@ -1,71 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Tienda</title>
+@extends('layouts.app')
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+@section('title', 'Tienda')
 
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+@section('content')
 
-    <style>
-        .navbar-custom { background-color: #28a745; }
-        .card img { height: 200px; object-fit: cover; }
-        .agregado { background-color: gray !important; }
-        .scale { transform: scale(1.3); transition: 0.2s; }
-    </style>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom px-4">
-    
-    <a class="navbar-brand" href="/">MiTienda</a>
-
-    <!-- BUSCADOR -->
-    <form class="d-flex mx-auto w-50">
-        <input id="buscador" class="form-control" type="search" placeholder="Buscar productos...">
-    </form>
-
-    <div class="d-flex gap-3 align-items-center">
-
-        <!-- LOGIN / LOGOUT -->
-        @if(!session('logueado'))
-
-            <a href="/login" class="btn btn-light">
-                <i class="bi bi-person"></i> Ingresar
-            </a>
-
-        @else
-
-            <span class="text-white">
-                Hola, {{ session('usuario')['nombre'] ?? 'Usuario' }}
-            </span>
-
-            <a href="/logout" class="btn btn-danger">
-                Cerrar sesión
-            </a>
-
-        @endif
-
-        <a href="/equipo" class="btn btn-light">Sobre Nosotros</a>
-
-        <!-- CARRITO -->
-        <a href="/carrito" class="btn btn-light position-relative">
-            <i class="bi bi-cart"></i>
-
-            <span id="contadorCarrito"
-                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                0
-            </span>
-        </a>
-
-    </div>
-</nav>
-
-<!-- PRODUCTOS -->
 <div class="container mt-5">
     <div class="row">
 
@@ -96,6 +34,10 @@
     </div>
 </div>
 
+@endsection
+
+
+@section('scripts')
 <script>
 
 // 🔍 BUSCADOR DINÁMICO
@@ -132,7 +74,6 @@ document.querySelectorAll(".agregar-btn").forEach((btn, index) => {
 
         localStorage.setItem("carrito", JSON.stringify(carrito));
 
-        // animación botón
         this.textContent = "Agregado";
         this.classList.add("agregado");
 
@@ -150,6 +91,4 @@ document.querySelectorAll(".agregar-btn").forEach((btn, index) => {
 actualizarContador();
 
 </script>
-
-</body>
-</html>
+@endsection
