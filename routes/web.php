@@ -3,26 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 
-// 🟢 HOME (MAIN)
 Route::get('/', function () {
     return view('main'); // cambiamos welcome por main
 });
 
-// 🟢 LOGIN
 Route::get('/login', function () {
     return view('login');
 });
 
 Route::post('/login', [UsuarioController::class, 'login']);
 
-// 🟢 REGISTRO
 Route::get('/registros', function () {
     return view('registros');
 });
 
 Route::post('/registro', [UsuarioController::class, 'store']);
 
-// 🔴 LOGOUT
 Route::get('/logout', function () {
 
     session()->forget('logueado');
@@ -31,7 +27,6 @@ Route::get('/logout', function () {
     return redirect('/')->with('success', 'Sesión cerrada');
 });
 
-// 🛒 CARRITO (PROTEGIDO)
 Route::get('/carrito', function () {
 
     if(!session('logueado')){
@@ -46,12 +41,15 @@ Route::get('/acercaNosotros', function () {
     return view('acercaNosotros');
 });
 
+Route::get('/categoria1', function () {
+    return view('categoria1');
+});
 
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=farmacialaravelctes@gmail.com
-MAIL_PASSWORD=xnbvonqkwschkbjs
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=farmacialaravelctes@gmail.com
-MAIL_FROM_NAME="FarmaciaCtes"
+Route::get('/categoria3', function () {
+    return view('categoria3');
+});
+
+Route::get('/categoria2', function () {
+    return view('categoria2');
+});
+

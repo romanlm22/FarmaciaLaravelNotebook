@@ -1,36 +1,64 @@
 @extends('layouts.app')
 
-@section('title', 'Tienda')
+@section('title', 'Carrito')
 
 @section('content')
 
 <div class="container mt-5">
-    <div class="row">
 
-        <!-- PRODUCTO 1 -->
-        <div class="col-md-6 mb-4 producto" data-nombre="zapatillas nike">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200">
-                <div class="card-body text-center">
-                    <h5>Zapatillas Nike</h5>
-                    <p>$25000</p>
-                    <button class="btn btn-success agregar-btn">Agregar al carrito</button>
-                </div>
+    <h2>🛒 Carrito de compras</h2>
+
+    <ul id="listaCarrito" class="list-group mt-3"></ul>
+
+    <h4 class="mt-3">Total: $<span id="total">0</span></h4>
+
+    <button class="btn btn-danger mt-3" onclick="vaciar()">Vaciar carrito</button>
+
+    <!-- BOTÓN COMPRA -->
+    <button class="btn btn-success mt-3 ms-2" data-bs-toggle="modal" data-bs-target="#modalCompra">
+        <i class="bi bi-whatsapp"></i> Comprar
+    </button>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="modalCompra">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar compra</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-        </div>
 
-        <!-- PRODUCTO 2 -->
-        <div class="col-md-6 mb-4 producto" data-nombre="remera adidas">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200">
-                <div class="card-body text-center">
-                    <h5>Remera Adidas</h5>
-                    <p>$12000</p>
-                    <button class="btn btn-success agregar-btn">Agregar al carrito</button>
-                </div>
+            <div class="modal-body">
+
+                <form id="formCompra">
+
+                    <div class="mb-3">
+                        <label>Nombre</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Pedido</label>
+                        <textarea id="pedido" class="form-control" readonly></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Enviar por WhatsApp
+                    </button>
+
+                </form>
+
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
 
@@ -40,55 +68,111 @@
 @section('scripts')
 <script>
 
-// 🔍 BUSCADOR DINÁMICO
-document.getElementById("buscador").addEventListener("keyup", function() {
-    let filtro = this.value.toLowerCase();
+// PRODUCTOS (simulación)
+let productos = {
+    1:{nombre:"Zapatillas Nike",precio:25000},
+    2:{nombre:"Remera Adidas",precio:12000}
+};
 
-    document.querySelectorAll(".producto").forEach(p => {
-        let nombre = p.getAttribute("data-nombre");
-        p.style.display = nombre.includes(filtro) ? "block" : "none";
-    });
-});
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let lista = document.getElementById("listaCarrito");
+let total = 0;
 
-// 🛒 CONTADOR
+// CONTADOR NAVBAR
 function actualizarContador(){
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let contador = document.getElementById("contadorCarrito");
-
-    contador.innerText = carrito.length;
-
-    contador.classList.add("scale");
-    setTimeout(() => contador.classList.remove("scale"), 200);
+    if(contador){
+        contador.innerText = carrito.length;
+    }
 }
 
-// 🛒 AGREGAR PRODUCTOS
-document.querySelectorAll(".agregar-btn").forEach((btn, index) => {
+// RENDER
+function render(){
 
-    btn.addEventListener("click", function() {
+    lista.innerHTML = "";
+    total = 0;
 
-        let id = index + 1;
-
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-        carrito.push(id);
-
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-
-        this.textContent = "Agregado";
-        this.classList.add("agregado");
-
-        setTimeout(() => {
-            this.textContent = "Agregar al carrito";
-            this.classList.remove("agregado");
-        }, 1200);
-
+    if(carrito.length === 0){
+        lista.innerHTML = "<li class='list-group-item text-danger'>Carrito vacío</li>";
+        document.getElementById("total").innerText = 0;
         actualizarContador();
+        return;
+    }
+
+    carrito.forEach((id,index) => {
+
+        let p = productos[id];
+        total += p.precio;
+
+        lista.innerHTML += `
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            ${p.nombre} - $${p.precio}
+
+            <button class="btn btn-danger btn-sm" onclick="eliminar(${index})">
+                ❌
+            </button>
+        </li>
+        `;
     });
 
+    document.getElementById("total").innerText = total;
+    actualizarContador();
+}
+
+// ELIMINAR
+function eliminar(index){
+    carrito.splice(index,1);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    render();
+}
+
+// VACIAR
+function vaciar(){
+    carrito = [];
+    localStorage.removeItem("carrito");
+    render();
+}
+
+// CARGAR PEDIDO EN MODAL
+document.getElementById("modalCompra")?.addEventListener("show.bs.modal", function(){
+
+    if(carrito.length === 0){
+        document.getElementById("pedido").value = "Carrito vacío";
+        return;
+    }
+
+    let texto = "";
+
+    carrito.forEach(id => {
+        let p = productos[id];
+        texto += `${p.nombre} - $${p.precio}\n`;
+    });
+
+    texto += `\nTOTAL: $${total}`;
+
+    document.getElementById("pedido").value = texto;
+});
+
+// ENVIAR WHATSAPP
+document.getElementById("formCompra")?.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombre").value;
+    let email = document.getElementById("email").value;
+    let pedido = document.getElementById("pedido").value;
+
+    let mensaje = `🛒 Pedido Web\n\n${pedido}\n\n👤 Nombre: ${nombre}\n📧 Email: ${email}`;
+
+    // 🔴 CAMBIÁ POR TU NÚMERO
+    let numero = "5493794126408";
+
+    let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
 });
 
 // INIT
-actualizarContador();
+render();
 
 </script>
 @endsection

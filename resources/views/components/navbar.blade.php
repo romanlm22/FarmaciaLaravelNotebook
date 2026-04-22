@@ -8,6 +8,23 @@
 
     <div class="d-flex gap-3 align-items-center">
 
+        <ul class="navbar-nav me-3">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                    Categorías
+                </a>
+
+                <ul class="dropdown-menu">
+
+                    <li><a class="dropdown-item" href="/categoria1">Alergias</a></li>
+                    <li><a class="dropdown-item" href="/categoria2">Dolor</a></li>
+                    <li><a class="dropdown-item" href="/categoria3">Vitaminas</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
         @if(!session('logueado'))
 
             <a href="/registros" class="btn btn-light">
