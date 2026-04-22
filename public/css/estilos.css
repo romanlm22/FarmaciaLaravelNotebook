@@ -1,0 +1,37 @@
+.logo-custom {
+    color: #28a745; 
+    font-size: 2rem;
+    text-decoration: none;
+    -webkit-text-stroke: 1.2px black;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.carousel-item img {
+    height: 320px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.info-footer {
+    background-color: #212529;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    min-height: 80px;
+}
+
+.bg-custom-navbar { 
+    background-color: #198754 !important; 
+}
+
+.product-card { 
+    transition: 0.3s; 
+    border-radius: 15px; 
+}
+
+.product-card:hover { 
+    transform: scale(1.03); 
+}
