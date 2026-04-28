@@ -7,36 +7,14 @@ Route::get('/', function () {
     return view('main'); // cambiamos welcome por main
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::post('/login', [UsuarioController::class, 'login']);
-
 Route::get('/registros', function () {
     return view('registros');
 });
 
-Route::post('/registro', [UsuarioController::class, 'store']);
-
-Route::get('/logout', function () {
-
-    session()->forget('logueado');
-    session()->forget('usuario');
-
-    return redirect('/')->with('success', 'Sesión cerrada');
+Route::get('/login', function () {
+    return view('login');
 });
 
-Route::get('/carrito', function () {
-
-    if(!session('logueado')){
-        return redirect('/login');
-    }
-
-    return view('carrito');
-});
-
-// 📄 OTRAS VISTAS
 Route::get('/acercaNosotros', function () {
     return view('acercaNosotros');
 });
@@ -51,5 +29,13 @@ Route::get('/categoria3', function () {
 
 Route::get('/categoria2', function () {
     return view('categoria2');
+});
+
+Route::get('/carrito', function () {
+    return view('carrito');
+});
+
+Route::get('/terminos', function () {
+    return view('terminos');
 });
 

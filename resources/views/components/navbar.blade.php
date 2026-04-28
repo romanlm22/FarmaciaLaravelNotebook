@@ -17,33 +17,21 @@
 
                 <ul class="dropdown-menu">
 
-                    <li><a class="dropdown-item" href="/categoria1">Alergias</a></li>
-                    <li><a class="dropdown-item" href="/categoria2">Dolor</a></li>
-                    <li><a class="dropdown-item" href="/categoria3">Vitaminas</a></li>
+                    <li><a class="dropdown-item" href="/categoria1">Cuidado Personal</a></li>
+                    <li><a class="dropdown-item" href="/categoria2">Belleza</a></li>
+                    <li><a class="dropdown-item" href="/categoria3">Medicamentos</a></li>
                 </ul>
             </li>
 
         </ul>
 
-        @if(!session('logueado'))
-
             <a href="/registros" class="btn btn-light">
                 <i class="bi bi-person"></i> Ingresar
             </a>
 
-        @else
-
-            <span class="text-white">
-                Hola, {{ session('usuario')['nombre'] ?? 'Usuario' }}
-            </span>
-
-            <a href="/logout" class="btn btn-danger">
-                Cerrar sesión
-            </a>
-
-        @endif
-
         <a href="/acercaNosotros" class="btn btn-light">Sobre Nosotros</a>
+
+        <a href="/login" class="btn btn-light">Contacto</a>
 
         <a href="/carrito" class="btn btn-light position-relative">
             <i class="bi bi-cart"></i>

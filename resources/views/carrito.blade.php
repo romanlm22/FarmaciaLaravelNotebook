@@ -14,14 +14,13 @@
 
     <button class="btn btn-danger mt-3" onclick="vaciar()">Vaciar carrito</button>
 
-    <!-- BOTÓN COMPRA -->
+
     <button class="btn btn-success mt-3 ms-2" data-bs-toggle="modal" data-bs-target="#modalCompra">
         <i class="bi bi-whatsapp"></i> Comprar
     </button>
 
 </div>
 
-<!-- MODAL -->
 <div class="modal fade" id="modalCompra">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -68,17 +67,37 @@
 @section('scripts')
 <script>
 
-// PRODUCTOS (simulación)
 let productos = {
-    1:{nombre:"Zapatillas Nike",precio:25000},
-    2:{nombre:"Remera Adidas",precio:12000}
+    1:{nombre:"Zapatillas Nike",precio:2500},
+    2:{nombre:"Remera Adidas",precio:1800},
+    3:{nombre:"Remera Adidas",precio:5800},
+    4:{nombre:"Zapatillas Nike",precio:2500},
+    5:{nombre:"Remera Adidas",precio:1800},
+    6:{nombre:"Remera Adidas",precio:5800},
+    7:{nombre:"Afeitadora",precio:2500},
+    8:{nombre:"Toallitas Femininas",precio:1800},
+    9:{nombre:"Desodorante",precio:5200},
+    10:{nombre:"Pasta dental",precio:2500},
+    11:{nombre:"Jabon en barra",precio:1800},
+    12:{nombre:"Protecto Solar",precio:5200},
+    13:{nombre:"Mascara de Pestañas",precio:2500},
+    14:{nombre:"Labial",precio:1800},
+    15:{nombre:"Lapiz Deliniador",precio:5200},
+    16:{nombre:"Esmalte para Uñas",precio:2500},
+    17:{nombre:"Base de Maquillaje",precio:1800},
+    18:{nombre:"Polvo Fijador",precio:5200},
+    19:{nombre:"Tafirol",precio:2500},
+    20:{nombre:"Actron",precio:1800},
+    21:{nombre:"Sertal",precio:5200},
+    22:{nombre:"Novalgina",precio:2500},
+    23:{nombre:"Buscapina",precio:1800},
+    24:{nombre:"Alikals",precio:5200}                            
 };
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let lista = document.getElementById("listaCarrito");
 let total = 0;
 
-// CONTADOR NAVBAR
 function actualizarContador(){
     let contador = document.getElementById("contadorCarrito");
     if(contador){
@@ -86,7 +105,6 @@ function actualizarContador(){
     }
 }
 
-// RENDER
 function render(){
 
     lista.innerHTML = "";
@@ -119,21 +137,18 @@ function render(){
     actualizarContador();
 }
 
-// ELIMINAR
 function eliminar(index){
     carrito.splice(index,1);
     localStorage.setItem("carrito", JSON.stringify(carrito));
     render();
 }
 
-// VACIAR
 function vaciar(){
     carrito = [];
     localStorage.removeItem("carrito");
     render();
 }
 
-// CARGAR PEDIDO EN MODAL
 document.getElementById("modalCompra")?.addEventListener("show.bs.modal", function(){
 
     if(carrito.length === 0){
@@ -153,7 +168,6 @@ document.getElementById("modalCompra")?.addEventListener("show.bs.modal", functi
     document.getElementById("pedido").value = texto;
 });
 
-// ENVIAR WHATSAPP
 document.getElementById("formCompra")?.addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -163,7 +177,6 @@ document.getElementById("formCompra")?.addEventListener("submit", function(e){
 
     let mensaje = `🛒 Pedido Web\n\n${pedido}\n\n👤 Nombre: ${nombre}\n📧 Email: ${email}`;
 
-    // 🔴 CAMBIÁ POR TU NÚMERO
     let numero = "5493794126408";
 
     let url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
@@ -171,7 +184,7 @@ document.getElementById("formCompra")?.addEventListener("submit", function(e){
     window.open(url, "_blank");
 });
 
-// INIT
+
 render();
 
 </script>

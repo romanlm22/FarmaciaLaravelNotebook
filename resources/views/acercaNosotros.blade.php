@@ -13,11 +13,11 @@
         <div class="col-md-6 text-center">
             <div class="card shadow p-4">
 
-                <img src="https://via.placeholder.com/200"
+                <img src="{{ asset('img/nosotros/20230228_101632.jpg') }}"
                      class="rounded-circle mx-auto mb-3">
 
-                <h4>Nombre Persona 1</h4>
-                <p class="text-muted">Desarrollador Web</p>
+                <h4>V.Roman Lopez Machado</h4>
+                <p class="text-muted">Programador Full Stack</p>
 
                 <p>Descripción breve.</p>
 
@@ -32,8 +32,8 @@
                 <img src="https://via.placeholder.com/200"
                      class="rounded-circle mx-auto mb-3">
 
-                <h4>Nombre Persona 2</h4>
-                <p class="text-muted">Diseñador UI/UX</p>
+                <h4>Francisco Gomez Perkovich</h4>
+                <p class="text-muted">Diseñador WEB</p>
 
                 <p>Descripción breve.</p>
 

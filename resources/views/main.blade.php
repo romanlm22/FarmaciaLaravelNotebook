@@ -6,7 +6,6 @@
 
 <div class="container mt-4">
 
-    <!-- 🔹 NUEVOS CARRUSELES (DEL SEGUNDO MAIN) -->
     <div class="row g-4 mb-5">
         <div class="col-md-6">
             <h5 class="fw-bold text-success mb-3 border-start border-4 border-success ps-2">Sucursales</h5>
@@ -53,31 +52,51 @@
         </div>
     </div>
 
-    <!-- 🔹 PRODUCTOS -->
     <h4 class="fw-bold mb-4 text-center">Productos en Oferta</h4>
 
-    <div class="row">
-        @php
-            $productos = [
-                ['id'=>1,'nombre'=>'Ibuprofeno 600','precio'=>2500,'icon'=>'bi-capsule text-success'],
-                ['id'=>2,'nombre'=>'Alcohol en Gel','precio'=>1800,'icon'=>'bi-droplet-fill text-info'],
-                ['id'=>3,'nombre'=>'Termómetro','precio'=>5200,'icon'=>'bi-thermometer-half text-danger'],
-            ];
-        @endphp
+        <div class="row">
+                @php
+                $productos = [
+                    [
+                                'id'=>1,
+                                'nombre'=>'Ibuprofeno 600',
+                                'precio'=>2500,
+                                'img'=>'https://cdn-icons-png.flaticon.com/512/2966/2966489.png'
+                            ],
+                            [
+                                'id'=>2,
+                                'nombre'=>'Alcohol en Gel',
+                                'precio'=>1800,
+                                'img'=>'https://cdn-icons-png.flaticon.com/512/2913/2913465.png'
+                            ],
+                            [
+                                'id'=>3,
+                                'nombre'=>'Termómetro',
+                                'precio'=>5200,
+                                'img'=>'https://cdn-icons-png.flaticon.com/512/1684/1684375.png'
+                            ],
+                        ];
+                    @endphp
 
-        @foreach($productos as $p)
-        <div class="col-md-4 mb-4 producto" data-nombre="{{ strtolower($p['nombre']) }}">
-            <div class="card h-100 shadow-sm border-0 product-card text-center p-4">
-                <i class="bi {{ $p['icon'] }} display-4"></i>
-                <h5 class="mt-3">{{ $p['nombre'] }}</h5>
-                <p class="fw-bold text-success">${{ $p['precio'] }}</p>
-                <button class="btn btn-success w-100 agregar-btn" data-id="{{ $p['id'] }}">
-                    Agregar al carrito
-                </button>
-            </div>
+                    @foreach($productos as $p)
+                    <div class="col-md-4 mb-4 producto" data-nombre="{{ strtolower($p['nombre']) }}">
+                        <div class="card h-100 shadow-sm border-0 product-card text-center p-4">
+
+                            <!-- 🔹 IMAGEN EN VEZ DE ICONO -->
+                            <img src="{{ $p['img'] }}" class="producto-img mb-3">
+
+                            <h5 class="mt-2">{{ $p['nombre'] }}</h5>
+
+                            <p class="fw-bold text-success">${{ $p['precio'] }}</p>
+
+                            <button class="btn btn-success w-100 agregar-btn" data-id="{{ $p['id'] }}">
+                                Agregar al carrito
+                            </button>
+
+                        </div>
+                    </div>
+                    @endforeach
         </div>
-        @endforeach
-    </div>
 
 </div>
 
@@ -87,7 +106,6 @@
 @section('scripts')
 <script>
 
-// 🔍 BUSCADOR (se mantiene igual)
 document.getElementById("buscador").addEventListener("keyup", function() {
     let filtro = this.value.toLowerCase();
 
@@ -97,7 +115,6 @@ document.getElementById("buscador").addEventListener("keyup", function() {
     });
 });
 
-// 🛒 CONTADOR
 function actualizarContador(){
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let contador = document.getElementById("contadorCarrito");
@@ -108,7 +125,6 @@ function actualizarContador(){
     setTimeout(() => contador.classList.remove("scale"), 200);
 }
 
-// 🛒 AGREGAR PRODUCTOS (ADAPTADO AL SEGUNDO MAIN)
 document.querySelectorAll(".agregar-btn").forEach(btn => {
 
     btn.addEventListener("click", function() {
