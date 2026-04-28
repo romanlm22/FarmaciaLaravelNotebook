@@ -26,15 +26,15 @@
     <div class="carousel-inner rounded-4 overflow-hidden">
 
         <div class="carousel-item active">
-            <img src="{{ asset('img/productos/medicamenos/portada7.png') }}" class="d-block w-100">
+            <img src="{{ asset('img/productos/medicamentos/portada7.png') }}" class="d-block w-100">
         </div>
 
         <div class="carousel-item">
-            <img src="{{ asset('img/productos/medicamenos/portada8.png') }}" class="d-block w-100">
+            <img src="{{ asset('img/productos/medicamentos/portada8.png') }}" class="d-block w-100">
         </div>
 
         <div class="carousel-item">
-            <img src="{{ asset('img/productos/medicamenos/portada9.png') }}" class="d-block w-100">
+            <img src="{{ asset('img/productos/medicamentos/portada9.png') }}" class="d-block w-100">
         </div>
 
     </div>

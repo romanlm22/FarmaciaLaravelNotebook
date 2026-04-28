@@ -29,14 +29,14 @@ body {
     object-position: center;
 }
 
-/* 🔹 CARRUSEL PRINCIPAL */
+/* 🔹 CARRUSEL PRINCIPAL (Modificado para mayor altura) */
 .custom-carousel {
     max-width: 1000px; /* Un poco más ancho para que parezca banner */
     margin: auto;
 }
 
 .custom-carousel .carousel-item img {
-    height: 300px; /* Ajusta este valor a tu gusto (300px a 350px es ideal) */
+    height: 550px; /* Aumentado de 300px a 450px para mejor visibilidad */
     object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
     object-position: center; /* Centra el recorte */
     border-radius: 20px;
