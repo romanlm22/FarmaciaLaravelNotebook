@@ -29,11 +29,11 @@
         </div>
 
         <div class="carousel-item">
-            <img src="{{ asset('img/productos/cuidadoPersonal/portada2.png') }}" class="d-block w-100">
+            <img src="{{ asset('img/Productos/cuidadoPersonal/portada2.png') }}" class="d-block w-100">
         </div>
 
         <div class="carousel-item">
-            <img src="{{ asset('img/productos/cuidadoPersonal/portada3.png') }}" class="d-block w-100">
+            <img src="{{ asset('img/Productos/cuidadoPersonal/portada3.png') }}" class="d-block w-100">
         </div>
 
     </div>

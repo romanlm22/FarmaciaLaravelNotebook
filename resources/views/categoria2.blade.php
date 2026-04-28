@@ -25,15 +25,15 @@
     <div class="carousel-inner rounded-4 overflow-hidden">
 
         <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1580281657527-47f249e8f9b7?q=80&w=1200" class="d-block w-100">
+            <img src="{{ asset('img/productos/belleza/portada4.png') }}" class="d-block w-100">
         </div>
 
         <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200" class="d-block w-100">
+            <img src="{{ asset('img/productos/belleza/portada5.png') }}" class="d-block w-100">
         </div>
 
         <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=1200" class="d-block w-100">
+            <img src="{{ asset('img/productos/belleza/portada6.png') }}" class="d-block w-100">
         </div>
 
     </div>
@@ -166,3 +166,4 @@ actualizarContador();
 
 </script>
 @endsection
+
